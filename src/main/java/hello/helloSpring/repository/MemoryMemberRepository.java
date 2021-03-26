@@ -1,9 +1,11 @@
 package hello.helloSpring.repository;
 
 import hello.helloSpring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+//@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     // 동시성 문제때문에 Concurrent?HashMap을 써야되는데 예제이기 때문에 그냥 HashMap을 쓰도록함.
