@@ -29,29 +29,29 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-//    // @GetMapping은 조회할 때 쓰이고
-//    // @PostMapping은 값을 넣을 때 쓰임
-//    @GetMapping("/members/new")
-//    public String createForm() {
-//        return "members/createMemberForm";
-//    }
-//
-//    @PostMapping("/members/new")
-//    public String create(MemberForm form) {
-//        Member member = new Member();
-//        member.setName(form.getName());
-//        //soutv
-//        System.out.println("member.getName() = " + member.getName());
-//        memberService.join(member);
-//
-//        return "redirect:/";
-//    }
-//
-//    @GetMapping("/members")
-//    public String list(Model model) {
-//        List<Member> members = memberService.findMembers();
-//        model.addAttribute("members", members);
-//
-//        return "members/memberList";
-//    }
+    // @GetMapping은 조회할 때 쓰이고
+    // @PostMapping은 값을 넣을 때 쓰임
+    @GetMapping("/members/new")
+    public String createForm() {
+        return "members/createMemberForm";
+    }
+
+    @PostMapping("/members/new")
+    public String create(MemberForm form) {
+        Member member = new Member();
+        member.setName(form.getName());
+        //soutv
+        System.out.println("member.getName() = " + member.getName());
+        memberService.join(member);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+
+        return "members/memberList";
+    }
 }
