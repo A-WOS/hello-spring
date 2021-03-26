@@ -1,13 +1,24 @@
 package hello.helloSpring;
 
+import hello.helloSpring.repository.JdbcMemberRepository;
 import hello.helloSpring.repository.MemberRepository;
-import hello.helloSpring.repository.MemoryMemberRepository;
 import hello.helloSpring.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.sql.DataSource;
+
 @Configuration
 public class SpringConfig {
+
+//    @Autowired private DataSource dataSource;
+    private DataSource dataSource;
+
+    @Autowired
+    public SpringConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     /**
      * 컴포넌트 스캔 방식 
@@ -23,6 +34,8 @@ public class SpringConfig {
 
     @Bean
     public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
+
+//        return new MemoryMemberRepository();
+        return new JdbcMemberRepository(dataSource);
     }
 }
