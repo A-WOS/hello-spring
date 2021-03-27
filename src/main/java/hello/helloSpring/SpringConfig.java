@@ -3,14 +3,16 @@ package hello.helloSpring;
 import hello.helloSpring.repository.JpaMemberRepository;
 import hello.helloSpring.repository.MemberRepository;
 import hello.helloSpring.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.persistence.EntityManager;
-
 @Configuration
 public class SpringConfig {
+    private final MemberRepository memberRepository;
+
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
 //    @Autowired private DataSource dataSource;
 //    private DataSource dataSource;
@@ -20,12 +22,13 @@ public class SpringConfig {
 //        this.dataSource = dataSource;
 //    }
 //    위의 필드와 생성자는 JdbcTemplateMemberRepository까지만 적용이됨.
-    private EntityManager em;
-
-    @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
-    }
+//    private EntityManager em;
+//
+//    @Autowired
+//    public SpringConfig(EntityManager em) {
+//        this.em = em;
+//    }
+//    위의 필드와 생성자는 JpaMemberRepository에서 사용.
 
     /**
      * 컴포넌트 스캔 방식 
@@ -36,15 +39,17 @@ public class SpringConfig {
      */
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+
+//        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
-    public MemberRepository memberRepository() {
-
-//        return new MemoryMemberRepository();
-//        return new JdbcMemberRepository(dataSource);
-//        return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(em);
-    }
+//    @Bean
+//    public MemberRepository memberRepository() {
+//
+////        return new MemoryMemberRepository();
+////        return new JdbcMemberRepository(dataSource);
+////        return new JdbcTemplateMemberRepository(dataSource);
+//        return new JpaMemberRepository(em);
+//    }
 }
