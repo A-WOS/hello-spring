@@ -9,6 +9,11 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 // CTRL + SHIFT + T -> 해당 클래스 테스트코드 바로 만들어줌.
+
+/**
+ *  이런거를 단위테스트라고 함 순수하게 자바 코드로만 테스트하는거 최소한의 단위로 하는것.
+ *  순순한 단위 테스트가 훨씬 좋은 테스트일 확률이 높다. (시간이 별로 안걸림)
+ */
 class MemberServiceTest {
 
 //    MemberService memberService = new MemberService(memberRepository);
@@ -27,6 +32,7 @@ class MemberServiceTest {
     }
 
     // 테스트코드를 돌떄마다 db의 값을 다 날려줌.
+    // 해당 @AfterEach와 동일한 기능을 하는게 MemberServiceIntegraionTest에서의 애노테이션인 @Transactional
     @AfterEach
     public void afterEach() {
         memberRepository.clearStore();
