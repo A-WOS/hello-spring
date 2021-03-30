@@ -12,6 +12,7 @@ public class HelloController {
     @GetMapping("hello")
     public String hello(Model model) {
         model.addAttribute("data", "Hello");
+        // 헬로우 월드
         return "hello";
     }
 
