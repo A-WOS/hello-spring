@@ -11,6 +11,7 @@ public class HelloController {
 
     @GetMapping("hello")
     public String hello(Model model) {
+        // model로 html에 값을 전달해줌
         model.addAttribute("data", "Hello");
         return "hello";
     }
